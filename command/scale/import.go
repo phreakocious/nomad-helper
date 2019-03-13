@@ -11,6 +11,11 @@ import (
 	yaml "gopkg.in/yaml.v2"
 )
 
+const (
+	maintenanceCountMode = "maintenance"
+	restoreCountmode     = "restore"
+)
+
 func ImportCommand(file string) error {
 	log.Info("Reading state file")
 
@@ -32,8 +37,8 @@ func ImportCommand(file string) error {
 
 	countMode := os.Getenv("COUNT_MODE")
 	switch countMode {
-	case "maintenance":
-	case "restore":
+	case maintenanceCountMode:
+	case restoreCountmode:
 		log.Infof("using count mode=%s", countMode)
 	default:
 		log.Fatal("Invalid COUNT_MODE (maintenance or restore")
@@ -64,9 +69,9 @@ func ImportCommand(file string) error {
 
 				targetCount := 0
 				switch countMode {
-				case "maintenance":
+				case maintenanceCountMode:
 					targetCount = details.MaintenanceCount
-				case "restore":
+				case restoreCountmode:
 					targetCount = details.Count
 				}
 
