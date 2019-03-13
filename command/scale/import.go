@@ -2,6 +2,7 @@ package scale
 
 import (
 	"io/ioutil"
+	"os"
 
 	"github.com/hashicorp/nomad/api"
 	"github.com/seatgeek/nomad-helper/nomad"
@@ -29,7 +30,16 @@ func ImportCommand(file string) error {
 		return err
 	}
 
-	for localJobName, jobGroups := range localState.Jobs {
+	countMode := os.Getenv("COUNT_MODE")
+	switch countMode {
+	case "maintenance":
+	case "restore":
+		log.Infof("using count mode=%s", countMode)
+	default:
+		log.Fatal("Invalid COUNT_MODE (maintenance or restore")
+	}
+
+	for localJobName, jobInfo := range localState.Jobs {
 		logger := log.WithField("job", localJobName)
 
 		remoteJob, _, err := client.Jobs().Info(localJobName, &api.QueryOptions{})
@@ -43,7 +53,7 @@ func ImportCommand(file string) error {
 		shouldUpdate := false
 		oldCount := 0
 
-		for localGroupName, localGroupCount := range jobGroups {
+		for localGroupName, details := range jobInfo.Groups {
 			for i, jobGroup := range remoteJob.TaskGroups {
 				// Name doesn't match
 				if localGroupName != *jobGroup.Name {
@@ -52,8 +62,16 @@ func ImportCommand(file string) error {
 
 				foundRemoteGroup = true
 
+				targetCount := 0
+				switch countMode {
+				case "maintenance":
+					targetCount = details.MaintenanceCount
+				case "restore":
+					targetCount = details.Count
+				}
+
 				// Don't bother to update if the count is already the same
-				if *jobGroup.Count == localGroupCount {
+				if *jobGroup.Count == targetCount {
 					logger.Info("Skipping update since remote and local count is the same")
 					break
 				}
@@ -61,9 +79,9 @@ func ImportCommand(file string) error {
 				// Update the remote count
 				oldCount = *jobGroup.Count
 
-				remoteJob.TaskGroups[i].Count = &localGroupCount
+				remoteJob.TaskGroups[i].Count = &targetCount
 
-				logger.Infof("Will change group count from %d to %d", oldCount, localGroupCount)
+				logger.Infof("Will change group count from %d to %d", oldCount, targetCount)
 
 				shouldUpdate = true
 				break
@@ -83,6 +101,7 @@ func ImportCommand(file string) error {
 				continue
 			}
 		}
+
 	}
 
 	return nil

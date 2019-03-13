@@ -1,0 +1,4523 @@
+info:
+  exported_at: Wed, 13 Mar 2019 10:42:50 +0000
+  exported_by: jippi
+  nomad_addr: http://nomad.service.seatgeek.prod:4646
+jobs:
+  alerts-cron-send-alerts:
+    project: alerts
+    description: Schedule sends of alerts to iterable
+    cronitor_id: 8YWIMQ
+    type: batch
+    cron: 0 18 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-cart-abandonment-email:
+    project: alerts
+    description: Sends cart abandonment emails.
+    cronitor_id: fOqGto
+    type: batch
+    cron: 0 */3 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-day-before-event-emails:
+    project: alerts
+    description: Sends day before event emails to ticket holders.
+    cronitor_id: zXtGYz
+    type: batch
+    cron: 0 14 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-event-abandonment-post-epv-notifications:
+    project: alerts
+    description: Schedule send event abandonment messages
+    cronitor_id: k4wGPz
+    type: batch
+    cron: 30 18 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-event-price-drop-alerts:
+    project: alerts
+    description: Schedule send price drop messages
+    cronitor_id: qiVInt
+    type: batch
+    cron: 0 15 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-just-announced-pushes:
+    project: alerts
+    description: Send Just Announced messages
+    cronitor_id: ZAzpTQ
+    type: batch
+    cron: 0 14 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-newsletter:
+    project: alerts
+    description: Send the newsletter
+    cronitor_id: blBIbs
+    type: batch
+    cron: 0 18 * * 1
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-nps-referral-emails:
+    project: alerts
+    description: Sends NPS referral emails.
+    cronitor_id: kVdC1R
+    type: batch
+    cron: 0 18 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-post-event-emails:
+    project: alerts
+    description: Sends post event emails.
+    cronitor_id: 8hYCxh
+    type: batch
+    cron: 0 15 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-pre-event-abandonment-notifications:
+    project: alerts
+    description: Send pre-event abandonment reminder
+    cronitor_id: h0LGv9
+    type: batch
+    cron: 30 18 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-reminders:
+    project: alerts
+    description: Send event reminders
+    cronitor_id: Kw1pGF
+    type: batch
+    cron: 0 17 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-cron-send-weekend-push:
+    project: alerts
+    description: Send the weekend push
+    cronitor_id: mofISa
+    type: batch
+    cron: 40 14 * * 4
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  alerts-iterable-workers:
+    project: alerts
+    type: service
+    internal_type: background-worker
+    groups:
+      iterable-alerts-worker:
+        count: 10
+        maintenance_count: 0
+  alerts-marketing-workers:
+    project: alerts
+    type: service
+    internal_type: background-worker
+    groups:
+      marketing-alerts-worker:
+        count: 9
+        maintenance_count: 0
+  alerts-process-file-s3:
+    project: alerts
+    type: batch
+    internal_type: parameterized
+    groups:
+      alerts-process-file-s3:
+        count: 1
+        maintenance_count: 0
+  alerts-send-canary-email-worker:
+    project: alerts
+    type: service
+    internal_type: background-worker
+    groups:
+      send-canary-email-worker:
+        count: 1
+        maintenance_count: 0
+  alerts-transactional-workers:
+    project: alerts
+    type: service
+    internal_type: background-worker
+    groups:
+      alerts-transactional-worker:
+        count: 4
+        maintenance_count: 0
+  api-abandon-nfl-silver-flow:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-abandon-nfl-silver-flow:
+        count: 1
+        maintenance_count: 0
+  api-admin-backlog-update:
+    project: api-admin
+    type: service
+    internal_type: background-worker
+    groups:
+      api-admin-backlog-update:
+        count: 1
+        maintenance_count: 0
+  api-admin-http:
+    project: api-admin
+    type: service
+    internal_type: http-service
+    groups:
+      api-admin-http:
+        count: 9
+        maintenance_count: 9
+        services:
+        - api-admin
+  api-cron-adyen-remittances:
+    project: api
+    description: Finds Adyen remittance reports which are not marked as completed,
+      and enqueues them for processing.
+    cronitor_id: hBOGJf
+    type: batch
+    cron: 0 */4 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-backfill-spotify-ids:
+    project: api
+    description: Backfill performer Spotify IDs
+    cronitor_id: dq6prY
+    type: batch
+    cron: 0 05 10 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-backfill-venue-metro-codes:
+    project: api
+    description: Backfill venue metrocodes based on lat, lon
+    cronitor_id: 4SEIuE
+    type: batch
+    cron: 0 05 10 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-blacklist-listings-cleanup:
+    project: api
+    description: Removes listing blacklist records from Redis for past events.
+    cronitor_id: ZnB0Rf
+    type: batch
+    cron: 0 7 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-buzzfeed-daily-cache:
+    project: api
+    description: Cache popular events lists for major metrocodes for use when buzzfeed
+      is in degraded mode
+    cronitor_id: N7OILD
+    type: batch
+    cron: 0 10 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-check-adyen-liable-account-balances:
+    project: api
+    description: Post the balances of Adyen liable accounts to Slack
+    cronitor_id: RgKGpl
+    type: batch
+    cron: 0 12,17,21 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-check-evopay-balance:
+    project: api
+    description: Pulls down our current EvoPay account balance from Ticket Evolution
+      and sends a Slack update to help our accounting folks stay on top of it.
+    cronitor_id: CPH0mD
+    type: batch
+    cron: 0 0 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-dangling-authorized-payment-check:
+    project: api
+    description: Reviews payments created recently, looking for auths that need to
+      be voided.
+    cronitor_id: HyVIPB
+    type: batch
+    cron: 0 21,9 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-exchange-market-orphan-order-check:
+    project: api
+    description: Checks the past 12 hours for orphan orders, which are orders that
+      succeeded in an external market but are missing a record in SeatGeek.
+    cronitor_id: KY4p4Z
+    type: batch
+    cron: 0 21,9 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-market-listings-check:
+    project: api
+    description: Detects when the number of listings for a particular market suddenly
+      drops to zero.
+    cronitor_id: wwXIg2
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-pending-ingestions-check:
+    project: api
+    description: Counts the number of orders in the ingesting_tickets state for events
+      starting soon, then sends that data to statsd.
+    cronitor_id: Y8rGyt
+    type: batch
+    cron: '*/15 * * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-transactional-email-alerts:
+    project: api
+    description: Checks the past 24 hours for low rates of transactional email completion
+      for each market.
+    cronitor_id: lZbGrP
+    type: batch
+    cron: 0 14 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-truncate-audit-checkout-summary:
+    project: api
+    description: Archives old rows in the audit_checkout_summary table by bulk deleting
+      them and uploading them to S3.
+    cronitor_id: rgNCax
+    type: batch
+    cron: 30 8 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-checkout-truncate-external-requests:
+    project: api
+    description: Archives old rows in the audit_external_request table by bulk deleting
+      them and uploading them to S3.
+    cronitor_id: KJaCIc
+    type: batch
+    cron: 0 8 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-cleanup-newsletter-signups:
+    project: api
+    type: batch
+    cron: 0 7 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-complete-eligible-initiated-marketplace-payouts:
+    project: api
+    description: Complete eligible initiated MarketplacePayouts
+    cronitor_id: bwkC9c
+    type: batch
+    cron: 0 15,20 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-complete-returned-marketplace-payouts:
+    project: api
+    description: Finds all returned marketplace payouts and attempts to re-try them
+      via a queue
+    cronitor_id: TVFCK4
+    type: batch
+    cron: 30 15,20 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-elastic-locations-daily-cache:
+    project: api
+    type: batch
+    cron: 15 10 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-email-csv-of-account-holders-that-require-kyc:
+    project: api
+    description: Emails our seller team to inform them of all user payout methods
+      which need KYC verification
+    cronitor_id: i2zIve
+    type: batch
+    cron: 0 16,21 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-enqueue-chargehound-dispute-backlog:
+    project: api
+    description: Add any missed disputes from chargehound that need response to the
+      dispute queue.
+    cronitor_id: khcGmX
+    type: batch
+    cron: 15 16 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-enqueue-order-status-poll-jobs:
+    project: api
+    description: Re-enqueues available orders to Order Status for the purpose of completing
+      orders.
+    cronitor_id: 2WaCxk
+    type: batch
+    cron: '*/15 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-enqueue-unprocessed-adyen-account-holder-payout-notifications:
+    project: api
+    description: Enqueues unprocessed adyen account holder payout notifications
+    cronitor_id: WxPCwB
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-fb-page-posts:
+    project: api
+    type: batch
+    cron: 30 23 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-initiate-eligible-pending-marketplace-payouts:
+    project: api
+    description: Initiate eligible pending MarketplacePayouts
+    cronitor_id: 9K2GB6
+    type: batch
+    cron: 0 13,18 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-iterable-healthcheck:
+    project: api
+    description: Checks Iterable's health
+    cronitor_id: anaIEP
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-move-main-account-funds-to-balance-transfer-account:
+    project: api
+    description: Moves funds from the 'main' account to the balance transfer account
+      in adyen payout flow
+    cronitor_id: qOmGI1
+    type: batch
+    cron: 45 11,16,20 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-nfl-epsilon-reporting:
+    project: api
+    description: Uploads weekly reporting file to NFL
+    cronitor_id: biFpDc
+    type: batch
+    cron: 0 3 * * MON
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-notify-slack-of-account-holders-that-require-kyc:
+    project: api
+    description: Notifies slack channel of account holders that require KYC
+    cronitor_id: YN9GM1
+    type: batch
+    cron: 0 16,21 * * 1-5
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-payments-ingest-payment-refund-disbursement-dates-from-braintree:
+    project: api
+    description: Ingests payment refund disbursement dates from braintree
+    cronitor_id: ZSmpRw
+    type: batch
+    cron: 0 3 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-payout-pending-payments:
+    project: api
+    description: Pays out pending payments
+    cronitor_id: VnSGcv
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-pig-primary-listing-registrations:
+    project: api
+    description: Scans the `primary_listing_registrations` table for any rows that
+      need either registration or deregistration and requeues them.
+    cronitor_id: LnKIqk
+    type: batch
+    cron: '*/1 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-pig-primary-purchase-reservations:
+    project: api
+    description: Scans the `primary_purchase_reservations` table for any rows that
+      haven't either fulfilled or failed, and requeues them.
+    cronitor_id: PWKI0d
+    type: batch
+    cron: '*/1 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-pig-primary-transfer-reservations:
+    project: api
+    description: Scans the `primary_transfer_reservations` table for any rows that
+      haven't either fulfilled or failed, and requeues them.
+    cronitor_id: vxzGlG
+    type: batch
+    cron: '*/1 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-prism-process-pending-rejection:
+    project: api
+    description: Enqueues PRISM orders that are pending rejection to be rejected.
+    cronitor_id: ympCgE
+    type: batch
+    cron: '* * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-prism-process-pending-review:
+    project: api
+    description: Enqueues PRISM orders that are pending review to be processed.
+    cronitor_id: FfbCcb
+    type: batch
+    cron: '* * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-recoupments-process:
+    project: api
+    description: Iterates over recoupments waiting to be processed and processes them.
+    cronitor_id: VZiC7h
+    type: batch
+    cron: 0 22 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-reload-location-index:
+    project: api
+    type: batch
+    cron: 0 0 * * 6
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-reload-user-index:
+    project: api
+    type: batch
+    cron: 0 0 * * 6
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-remove-old-auth-records:
+    project: api
+    description: Remove old `oauth_authorization` records from the `PROBLEMATIC_USER_ID_LIMIT`
+      users with the most records.
+    cronitor_id: BPTCHO
+    type: batch
+    cron: 0 6 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-rescrape-userconnectedservices:
+    project: api
+    type: batch
+    cron: 0 4 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-reward-referral-advocates:
+    project: api
+    description: Finds referral advocates (those who refer others) and issues their
+      rewards
+    cronitor_id: YuCG6A
+    type: batch
+    cron: 0 */3 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-send-delighted-emails:
+    project: api
+    description: Sends our delighted survey to users who satisfy particular conditions.
+    cronitor_id: g4lCA8
+    type: batch
+    cron: 0 14 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-similar-events-caching:
+    project: api
+    type: batch
+    cron: 0 */8 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-static-lists-caching:
+    project: api
+    type: batch
+    cron: 0 */8 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-update-facebook-ticket-tiers:
+    project: api
+    description: Update the available listings ('tiers') for Syndicated SeatGeek events
+      on Facebook
+    cronitor_id: 0ZfChd
+    type: batch
+    cron: '*/20 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-user-listing-reconciliation:
+    project: api
+    description: Finds all listings that changed since last run and updates Peakpass
+      about their state
+    cronitor_id: 4CACdE
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-cron-userpurchaseactions-cleanup-job-order-manager:
+    project: api
+    description: Finds user_purchase_actions which are ready but not completed and
+      queues them for cleanup
+    cronitor_id: mkCCyh
+    type: batch
+    cron: '*/5 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  api-external:
+    project: api
+    type: service
+    internal_type: http-service
+    groups:
+      api-external:
+        count: 96
+        maintenance_count: 96
+        services:
+        - api
+  api-garcia-http:
+    project: api
+    type: service
+    internal_type: http-service
+    groups:
+      api-garcia-http:
+        count: 18
+        maintenance_count: 18
+        services:
+        - api-garcia
+  api-ingest-event-price-drop:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-event-price-drop:
+        count: 1
+        maintenance_count: 0
+  api-ingest-event-scores:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-event-scores:
+        count: 1
+        maintenance_count: 0
+  api-ingest-event-section-row-count:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-event-section-row-count:
+        count: 1
+        maintenance_count: 0
+  api-ingest-ghost-transactions:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-ghost-transactions:
+        count: 1
+        maintenance_count: 0
+  api-ingest-performer-price-history:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-performer-price-history:
+        count: 1
+        maintenance_count: 0
+  api-ingest-performer-scores:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-performer-scores:
+        count: 1
+        maintenance_count: 0
+  api-ingest-user-engagement-stats:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-user-engagement-stats:
+        count: 1
+        maintenance_count: 0
+  api-ingest-venue-scores:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-ingest-venue-scores:
+        count: 1
+        maintenance_count: 0
+  api-internal:
+    project: api
+    type: service
+    internal_type: http-service
+    groups:
+      api-internal:
+        count: 20
+        maintenance_count: 20
+        services:
+        - ${NOMAD_JOB_NAME}
+  api-listings-internal:
+    project: api
+    type: service
+    internal_type: http-service
+    groups:
+      api-listings-internal:
+        count: 12
+        maintenance_count: 12
+        services:
+        - ${NOMAD_JOB_NAME}
+  api-mobile:
+    project: api
+    type: service
+    internal_type: http-service
+    groups:
+      api-mobile:
+        count: 20
+        maintenance_count: 20
+        services:
+        - api-mobile
+  api-queue-broken-post-registration:
+    project: api
+    type: batch
+    internal_type: parameterized
+    groups:
+      api-queue-broken-post-registration:
+        count: 1
+        maintenance_count: 0
+  api-tickets-http:
+    project: api
+    type: service
+    internal_type: http-service
+    groups:
+      api-tickets-http:
+        count: 12
+        maintenance_count: 12
+        services:
+        - api-tickets
+  api-users-http:
+    project: api
+    type: service
+    internal_type: http-service
+    groups:
+      api-users-http:
+        count: 15
+        maintenance_count: 15
+        services:
+        - api-users
+  api-worker:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker:
+        count: 16
+        maintenance_count: 0
+  api-worker-adyen:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-adyen:
+        count: 8
+        maintenance_count: 0
+  api-worker-adyen-report-processor:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-adyen-report-processor:
+        count: 1
+        maintenance_count: 0
+  api-worker-cc-backfill:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-cc-backfill:
+        count: 1
+        maintenance_count: 0
+  api-worker-chargehound:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-chargehound:
+        count: 1
+        maintenance_count: 0
+  api-worker-checkout:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-checkout:
+        count: 1
+        maintenance_count: 0
+  api-worker-order-status:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-order-status:
+        count: 10
+        maintenance_count: 0
+  api-worker-payments:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-payments:
+        count: 1
+        maintenance_count: 0
+  api-worker-payouts:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-payouts:
+        count: 8
+        maintenance_count: 0
+  api-worker-primary-integration-gateway:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-primary-integration-gateway:
+        count: 1
+        maintenance_count: 0
+  api-worker-prism:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-prism:
+        count: 1
+        maintenance_count: 0
+  api-worker-referrals:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-referrals:
+        count: 3
+        maintenance_count: 0
+  api-worker-user-index:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-user-index:
+        count: 1
+        maintenance_count: 0
+  api-worker-user-purchase-actions:
+    project: api
+    type: service
+    internal_type: background-worker
+    groups:
+      api-worker-user-purchase-actions:
+        count: 4
+        maintenance_count: 0
+  apollo-cron-ping-apollo:
+    project: apollo
+    type: batch
+    cron: 0 */4 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  apollo-cron-prune-apollo-archive:
+    project: apollo
+    type: batch
+    cron: 0 3 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  apollo-http:
+    project: apollo
+    type: service
+    internal_type: http-service
+    groups:
+      apollo-http:
+        count: 5
+        maintenance_count: 5
+        services:
+        - apollo
+  apollo-tzanalytic:
+    project: apollo
+    type: service
+    internal_type: background-worker
+    groups:
+      apollo-tzanalytic:
+        count: 10
+        maintenance_count: 0
+  apollo-worker:
+    project: apollo
+    type: service
+    internal_type: background-worker
+    groups:
+      apollo-worker:
+        count: 20
+        maintenance_count: 0
+  aws-dynamic-consul-catalog-nomad-prod:
+    project: aws-dynamic-consul-catalog-nomad
+    type: service
+    internal_type: http-service
+    groups:
+      aws-dynamic-consul-catalog:
+        count: 1
+        maintenance_count: 1
+        services:
+        - aws-dynamic-consul-catalog
+  bap-get-promo-usage:
+    project: bap
+    description: Generates promo code usage for the channel "brand_ambassador"
+    cronitor_id: I5JGSR
+    type: batch
+    cron: 0 0 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  bap-http:
+    project: bap
+    type: service
+    internal_type: http-service
+    groups:
+      bap-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - bap
+  billboard-cache-updater:
+    project: billboard
+    type: service
+    internal_type: background-worker
+    groups:
+      billboard-cache-updater:
+        count: 1
+        maintenance_count: 0
+  billboard-cron-peformer-tour:
+    project: billboard
+    description: Create or update campaigns for performer tours
+    cronitor_id: i8q0Fs
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  billboard-external:
+    project: billboard
+    type: service
+    internal_type: http-service
+    groups:
+      billboard-external:
+        count: 10
+        maintenance_count: 10
+        services:
+        - billboard
+  billboard-ingest-browse-price-drop-android:
+    project: billboard
+    description: Consume price drop data from outbox and update the android promotion
+    cronitor_id: ljWCu5
+    type: batch
+    internal_type: parameterized
+    groups:
+      billboard-ingest-browse-price-drop-android:
+        count: 1
+        maintenance_count: 0
+  billboard-ingest-browse-price-drop-ios:
+    project: billboard
+    description: Consume price drop data from outbox and update the ios promotion
+    cronitor_id: Z1EIZh
+    type: batch
+    internal_type: parameterized
+    groups:
+      billboard-ingest-browse-price-drop-ios:
+        count: 1
+        maintenance_count: 0
+  billboard-ingest-event-price-drop:
+    project: billboard
+    description: Consume price drop data from outbox and update promotions for event
+      pages
+    cronitor_id: ZXZIpG
+    type: batch
+    internal_type: parameterized
+    groups:
+      billboard-ingest-event-price-drop:
+        count: 1
+        maintenance_count: 0
+  billboard-internal:
+    project: billboard
+    type: service
+    internal_type: http-service
+    groups:
+      billboard-internal:
+        count: 3
+        maintenance_count: 3
+        services:
+        - ${NOMAD_JOB_NAME}
+  blart-http:
+    project: blart
+    type: service
+    internal_type: http-service
+    groups:
+      blart-http:
+        count: 0
+        maintenance_count: 0
+        services:
+        - blart
+  buster-admin:
+    project: buster
+    type: service
+    internal_type: http-service
+    groups:
+      buster-admin:
+        count: 2
+        maintenance_count: 2
+        services:
+        - ${NOMAD_JOB_NAME}
+  buster-http:
+    project: buster
+    type: service
+    internal_type: http-service
+    groups:
+      buster-http:
+        count: 8
+        maintenance_count: 8
+        services:
+        - buster-tileserver
+  buster-worker:
+    project: buster
+    type: service
+    internal_type: background-worker
+    groups:
+      buster-worker:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-consume-outbox:
+    project: buzzfeed
+    type: batch
+    internal_type: parameterized
+    groups:
+      buzzfeed-consume-outbox:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-cron-cache-user-tracked-performers:
+    project: buzzfeed
+    description: Copy each user's tracked performers into redis
+    cronitor_id: Uk3CYG
+    type: batch
+    cron: 15 13 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-cron-event-preferences:
+    project: buzzfeed
+    description: Update the EventPreference table from outbox
+    cronitor_id: y9dCWY
+    type: batch
+    cron: 55 12 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-cron-performer-preferences:
+    project: buzzfeed
+    description: Update the PerformerPreference table from outbox
+    cronitor_id: gH2C60
+    type: batch
+    cron: 0 13 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-cron-refresh-event-index:
+    project: buzzfeed
+    description: Copy events and lineups for future events with listings
+    cronitor_id: RX6GGz
+    type: batch
+    cron: 0 15 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-cron-refresh-similar-performers:
+    project: buzzfeed
+    description: Update similar performers mappings from outbox
+    cronitor_id: rpxpsS
+    type: batch
+    cron: 45 14 * * 1
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-cron-user-relationships-delta:
+    project: buzzfeed
+    description: Update the UserRelationships table from outbox
+    cronitor_id: aEZGT3
+    type: batch
+    cron: 10 13 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-cron-users-delta:
+    project: buzzfeed
+    description: Update the User table from outbox
+    cronitor_id: yaYpNU
+    type: batch
+    cron: 5 13 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  buzzfeed-http:
+    project: buzzfeed
+    type: service
+    internal_type: http-service
+    groups:
+      buzzfeed-http:
+        count: 30
+        maintenance_count: 30
+        services:
+        - buzzfeed
+  buzzfeed-worker:
+    project: buzzfeed
+    type: service
+    internal_type: background-worker
+    groups:
+      buzzfeed-worker:
+        count: 3
+        maintenance_count: 0
+  delphi-server:
+    project: delphi
+    type: service
+    internal_type: http-service
+    groups:
+      delphi-server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - delphi
+  dharma-cron-make-aircall-users-unavailable:
+    project: dharma
+    type: batch
+    cron: 0 23 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  dharma-http:
+    project: dharma
+    type: service
+    internal_type: http-service
+    groups:
+      dharma-http:
+        count: 3
+        maintenance_count: 3
+        services:
+        - dharma
+  dharma-worker:
+    project: dharma
+    type: service
+    internal_type: background-worker
+    groups:
+      dharma-worker:
+        count: 2
+        maintenance_count: 0
+  dq5-client-worker:
+    project: dq5-client
+    type: service
+    internal_type: background-worker
+    groups:
+      dq5-client-worker:
+        count: 1
+        maintenance_count: 0
+  dq5-enqueue-events:
+    project: dq5
+    description: Enqueues event model training jobs on the dealquality_dq5_event_model_training
+      RabbitMQ queue
+    cronitor_id: ofYIBp
+    type: batch
+    cron: 13 0/4 * * *
+    internal_type: periodic
+    groups:
+      dq5-enqueue-events:
+        count: 1
+        maintenance_count: 0
+  dq5-enqueue-maps:
+    project: dq5
+    description: Enqueues map model training jobs on the dealquality_dq5_map_model_training
+      RabbitMQ queue
+    cronitor_id: W4DCQn
+    type: batch
+    cron: 13 1/6 * * *
+    internal_type: periodic
+    groups:
+      dq5-enqueue-maps:
+        count: 1
+        maintenance_count: 0
+  dq5-event-model-worker:
+    project: dq5
+    type: service
+    internal_type: background-worker
+    groups:
+      dq5-event-model-worker:
+        count: 7
+        maintenance_count: 0
+  dq5-map-model-worker:
+    project: dq5
+    type: service
+    internal_type: background-worker
+    groups:
+      dq5-map-model-worker:
+        count: 1
+        maintenance_count: 0
+  dq5-worker-fix-dq:
+    project: dq5
+    type: service
+    internal_type: background-worker
+    groups:
+      dq5-worker-fix-dq:
+        count: 1
+        maintenance_count: 0
+  druzhba-lexington-handler:
+    project: druzhba
+    type: batch
+    internal_type: parameterized
+    groups:
+      druzhba-lexington-handler-group:
+        count: 1
+        maintenance_count: 0
+  druzhba-worker:
+    project: druzhba
+    description: ETL pipeline from production databases into Redshift
+    cronitor_id: C4upT9
+    type: batch
+    cron: 30 1/3 * * *
+    internal_type: periodic
+    groups:
+      druzhba-worker:
+        count: 1
+        maintenance_count: 0
+  druzhba-worker-daily:
+    project: druzhba
+    description: ETL into Redshift for a handful of large slowly-updating production
+      tables
+    cronitor_id: bzRGk9
+    type: batch
+    cron: 30 9 * * *
+    internal_type: periodic
+    groups:
+      druzhba-worker-daily:
+        count: 1
+        maintenance_count: 0
+  ds-r-apps-reports:
+    project: ds-r-apps
+    type: service
+    internal_type: http-service
+    groups:
+      ds-r-apps-reports:
+        count: 1
+        maintenance_count: 1
+        services:
+        - ds-r-reports
+  ebs-xfs-snapshot:
+    project: ebs-xfs-snapshot
+    type: batch
+    cron: 0 5 * * *
+    internal_type: periodic
+    groups:
+      ebs-xfs-snapshot:
+        count: 1
+        maintenance_count: 0
+  email-templates:
+    project: email-templates
+    type: service
+    internal_type: http-service
+    groups:
+      email-templates:
+        count: 10
+        maintenance_count: 10
+        services:
+        - email-templates
+  email-templates-pre:
+    project: email-templates
+    type: batch
+    internal_type: parameterized
+    groups:
+      email-templates-pre:
+        count: 1
+        maintenance_count: 0
+  email-templatez-http:
+    project: email-templatez
+    type: service
+    internal_type: http-service
+    groups:
+      email-templatez-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - email-templatez
+  email-templatez-update-iterable:
+    project: email-templatez
+    type: batch
+    internal_type: parameterized
+    groups:
+      email-templatez-update-iterable:
+        count: 1
+        maintenance_count: 0
+  enterprise-confluence-server:
+    project: enterprise-confluence-server
+    type: service
+    internal_type: http-service
+    groups:
+      enterprise-confluence-server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - enterprise-confluence-server
+  event-organizer-portal-external:
+    project: event-organizer-portal
+    type: service
+    internal_type: http-service
+    groups:
+      event-organizer-portal-external:
+        count: 1
+        maintenance_count: 1
+        services:
+        - event-organizer-portal
+  feature-flags-http:
+    project: feature-flags
+    type: service
+    internal_type: http-service
+    groups:
+      feature-flags-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - feature-flags
+  fortune-cron-scrape-stubhub-listings:
+    project: fortune
+    description: Scrapes stubhub listings, caches them in redis, and prompts rescraper
+      to ingest them
+    cronitor_id: 8oj0pm
+    type: batch
+    cron: 0 6 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  fortune-cron-scrape-top-listings-next-7-days:
+    project: fortune
+    description: Scrapes top listings, caches them in redis, and prompts rescraper
+      to ingest them
+    cronitor_id: NmtCfF
+    type: batch
+    cron: 0 4,8,12,16,20,0 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  fortune-cron-scrape-vividseats-listings:
+    project: fortune
+    description: Scrapes vividseats listings, caches them in redis, and prompts rescraper
+      to ingest them
+    cronitor_id: mXtC8Z
+    type: batch
+    cron: 0 7 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  fortune-rescraper-worker:
+    project: fortune
+    type: service
+    internal_type: background-worker
+    groups:
+      fortune-rescraper-worker:
+        count: 2
+        maintenance_count: 0
+  fortune-stubhub-worker:
+    project: fortune
+    type: service
+    internal_type: background-worker
+    groups:
+      fortune-stubhub-worker:
+        count: 6
+        maintenance_count: 0
+  fortune-ticketmaster-worker:
+    project: fortune
+    type: service
+    internal_type: background-worker
+    groups:
+      fortune-ticketmaster-worker:
+        count: 6
+        maintenance_count: 0
+  frontend-lb-reverse-proxy-server-prod:
+    project: frontend-lb
+    type: service
+    internal_type: http-service
+    groups:
+      frontend-lb-reverse-proxy-server-prod:
+        count: 3
+        maintenance_count: 3
+        services:
+        - prod-reverse-proxy
+  frontend-lb-server-prod:
+    project: frontend-lb
+    type: service
+    internal_type: http-service
+    groups:
+      frontend-lb-server-prod:
+        count: 3
+        maintenance_count: 3
+        services:
+        - prod-frontend-lb
+  frontend-lb-server-seatgeekadmin:
+    project: frontend-lb
+    type: service
+    internal_type: http-service
+    groups:
+      frontend-lb-server-seatgeekadmin:
+        count: 3
+        maintenance_count: 3
+        services:
+        - seatgeekadmin-frontend-lb
+  frontend-lb-telemetry:
+    project: ""
+    type: service
+    internal_type: background-worker
+    groups:
+      frontend-lb-telemetry:
+        count: 1
+        maintenance_count: 0
+  go-test-log:
+    project: go-test
+    type: batch
+    internal_type: parameterized
+    groups:
+      go-test-log:
+        count: 1
+        maintenance_count: 0
+  hashi-ui:
+    project: hashi-ui
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 3
+        maintenance_count: 3
+        services:
+        - hashi-ui
+  inferno-streaming-master:
+    project: inferno-streaming
+    type: service
+    internal_type: http-service
+    groups:
+      inferno-streaming-master:
+        count: 1
+        maintenance_count: 1
+        services:
+        - inferno-streaming
+  keyboard-cron-sleep:
+    project: keyboard
+    type: batch
+    cron: 0 */4 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  keyboard-http:
+    project: keyboard
+    type: service
+    internal_type: http-service
+    groups:
+      application:
+        count: 2
+        maintenance_count: 2
+        services:
+        - keyboard
+  ledgerman-sales-csv-process-worker:
+    project: ledgerman
+    type: service
+    internal_type: background-worker
+    groups:
+      ledgerman-sales-csv-process-worker:
+        count: 2
+        maintenance_count: 0
+  ledgerman-transactions-analyser-worker:
+    project: ledgerman
+    type: service
+    internal_type: background-worker
+    groups:
+      ledgerman-transactions-analyser-worker:
+        count: 2
+        maintenance_count: 0
+  ledgerman-transactions-chargeback-worker:
+    project: ledgerman
+    type: service
+    internal_type: background-worker
+    groups:
+      ledgerman-transactions-chargeback-worker:
+        count: 2
+        maintenance_count: 0
+  ledgerman-transactions-csv-worker:
+    project: ledgerman
+    type: service
+    internal_type: background-worker
+    groups:
+      ledgerman-transactions-csv-worker:
+        count: 2
+        maintenance_count: 0
+  ledgerman-transactions-direct-worker:
+    project: ledgerman
+    type: service
+    internal_type: background-worker
+    groups:
+      ledgerman-transactions-direct-worker:
+        count: 2
+        maintenance_count: 0
+  ledgerman-transactions-jsapi-worker:
+    project: ledgerman
+    type: service
+    internal_type: background-worker
+    groups:
+      ledgerman-transactions-jsapi-worker:
+        count: 2
+        maintenance_count: 0
+  ledgerman-transactions-order-status-worker:
+    project: ledgerman
+    type: service
+    internal_type: background-worker
+    groups:
+      ledgerman-transactions-order-status-worker:
+        count: 2
+        maintenance_count: 0
+  lexington-server:
+    project: lexington
+    type: service
+    internal_type: http-service
+    groups:
+      lexington-server:
+        count: 2
+        maintenance_count: 2
+        services:
+        - lexington
+  listingfeed-http:
+    project: listingfeed
+    type: service
+    internal_type: http-service
+    groups:
+      listingfeed-http:
+        count: 40
+        maintenance_count: 40
+        services:
+        - listingfeed
+  lucille-http:
+    project: lucille
+    type: service
+    internal_type: http-service
+    groups:
+      lucille-http:
+        count: 8
+        maintenance_count: 8
+        services:
+        - lucille
+  monolith-alerts-emr-job:
+    project: monolith
+    description: Triggers Sparkler AlertsJob on EMR that builds the next day’s marketing
+      email payloads
+    cronitor_id: wj8INN
+    type: batch
+    cron: 15 1 * * *
+    internal_type: periodic
+    groups:
+      monolith-alerts-emr-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-audience-emr-job:
+    project: monolith
+    description: Triggers Sparklet AudienceJob on EMR that builds marketing audiences
+      for Pathos
+    cronitor_id: VpVpic
+    type: batch
+    cron: 15 5 * * *
+    internal_type: periodic
+    groups:
+      monolith-audience-emr-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-awsbilling:
+    project: monolith
+    description: Pulls monthly AWS billing files from s3 that allow us to track AWS
+      consumption and spend in Looker
+    cronitor_id: vW3I8b
+    type: batch
+    cron: 30 4/12 * * *
+    internal_type: periodic
+    groups:
+      monolith-awsbilling-group:
+        count: 1
+        maintenance_count: 0
+  monolith-build-customer-acquisition-tables:
+    project: monolith
+    description: Runs SQL to SQL transforms to build the customer acquisition model,
+      which links sales, email sign-ups, and app installs to a unique customer id.
+    cronitor_id: tibGBG
+    type: batch
+    cron: 30 0,2,4,6,8,10,12,14,16,18,20,22 * * *
+    internal_type: periodic
+    groups:
+      monolith-build-customer-acquisition-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-build-customer-daily-activity-table:
+    project: monolith
+    description: Daily job that links observations in our clickstream data to a single
+      customer.
+    cronitor_id: 7yVISM
+    type: batch
+    cron: 30 0,2,4,6,8,10,12,14,16,18,20,22 * * *
+    internal_type: periodic
+    groups:
+      monolith-build-customer-daily-activity-table-group:
+        count: 1
+        maintenance_count: 0
+  monolith-buzzfeed-outbox-jobs:
+    project: monolith
+    description: Posts a daily update of user preference data that supports personalization
+      of homepage browse.
+    cronitor_id: A7CGom
+    type: batch
+    cron: 30 12 * * *
+    internal_type: periodic
+    groups:
+      monolith-buzzfeed-outbox-jobs-group:
+        count: 1
+        maintenance_count: 0
+  monolith-client-reports:
+    project: monolith
+    description: Posts a daily update of SGO data to an S3 location shared with the
+      Sounders.
+    cronitor_id: VnLGVJ
+    type: batch
+    cron: 30 12 * * *
+    internal_type: periodic
+    groups:
+      monolith-client-reports-group:
+        count: 1
+        maintenance_count: 0
+  monolith-daily-adwords-uploads:
+    project: monolith
+    description: Uploads anonymized data on previously acquired customers to Google
+      Adwords API in order to take advantage of their automated SEM tools.
+    cronitor_id: tU6GD7
+    type: batch
+    cron: 0 15 * * *
+    internal_type: periodic
+    groups:
+      monolith-daily-adwords-uploads:
+        count: 1
+        maintenance_count: 0
+  monolith-daily-metrics-job:
+    project: monolith
+    description: Updates the public.fact_daily_metric table which backs the Data Team
+      Daily Metrics dashboard in looker.
+    cronitor_id: 5wKCjZ
+    type: batch
+    cron: 0 18 * * *
+    internal_type: periodic
+    groups:
+      monolith-daily-metrics-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-daily-rpc-prediction-upload:
+    project: monolith
+    description: Runs the daily RPC prediction script and uploads RPC predictions
+      to Google Drive through Zapier.
+    cronitor_id: 2n00gC
+    type: batch
+    cron: 45 14 * * *
+    internal_type: periodic
+    groups:
+      daily-rpc-prediction-upload-group:
+        count: 1
+        maintenance_count: 0
+  monolith-event-scrape-data-job:
+    project: monolith
+    description: Executes a daily scrape of weather forecasts and betting stats for
+      some major sports, supporting CRM email campaigns.
+    cronitor_id: wKEpy6
+    type: batch
+    cron: 45 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-event-scrape-data-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-event-visitor-counts:
+    project: monolith
+    description: Frequently posts a data set of event-page-view stats, supporting
+      a feature on the website. Maintained by Growth team.
+    cronitor_id: rkspGr
+    type: batch
+    cron: '*/10 * * * *'
+    internal_type: periodic
+    groups:
+      monolith-event-visitor-counts-group:
+        count: 1
+        maintenance_count: 0
+  monolith-google-index-whitelists-outbox-job:
+    project: monolith
+    description: |
+      This job queries the data warehouse for events and performers
+      that we want to index in google search results (omitting
+      insignificant event and performer pages). The output is a list
+      posted to a data feed for a consumer to implement the indexing.
+    cronitor_id: cYXpth
+    type: batch
+    cron: 35 0,6,12,18 * * *
+    internal_type: periodic
+    groups:
+      monolith-google-index-whitelists-outbox-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-http:
+    project: monolith
+    description: The process to host the Luigi server and HTTP interface
+    type: service
+    internal_type: http-service
+    groups:
+      monolith-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - monolith
+  monolith-inventory-snapshots-emr-job:
+    project: monolith
+    description: |
+      Kicks off the InventorySnapshotsJob spark job, which is part
+      of the pipeline used to update fact_inventory_daily_snapshot
+      and fact_competitor_inventory_daily_snapshot.
+    cronitor_id: qsWpRf
+    type: batch
+    cron: 10 1,3,5,7,9,11,13,15,17,19,21,23 * * *
+    internal_type: periodic
+    groups:
+      monolith-inventory-snapshots-emr-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-iterable-import:
+    project: monolith
+    description: Loads from Iterable records of our email campaigns, including templates,
+      recipients and customer actions.
+    cronitor_id: kRdpkM
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      monolith-iterable-import-group:
+        count: 1
+        maintenance_count: 0
+  monolith-job-monitor:
+    project: monolith
+    description: Checks on the outputs of other periodic jobs to ensure they’ve completed
+      on schedule, and emails data-team if they have not.
+    cronitor_id: BgMGTf
+    type: batch
+    cron: 0 12 * * *
+    internal_type: periodic
+    groups:
+      monolith-job-monitor-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-adyen-reports:
+    project: monolith
+    description: Loads Adyen financial reports into the data warehouse. The reports
+      are downloaded from daily report URLs sent by Adyen.
+    cronitor_id: ygKGEA
+    type: batch
+    cron: 15 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-load-adyen-reports-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-aircall-tables:
+    project: monolith
+    description: |
+      Loads data from the Aircall API into the data warehouse. Aircall
+      is the legacy CX cloud call center software that allows them to
+      track pickups, call durations, etc. This has since been replaced by TalkDesk.
+    cronitor_id: f2mGCw
+    type: batch
+    cron: 20 * * * *
+    internal_type: periodic
+    groups:
+      monolith-load-aircall-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-appfigures-tables:
+    project: monolith
+    description: Extracts data on SG’s app rankings/ratings in various app stores
+    cronitor_id: XyXCwB
+    type: batch
+    cron: 20 12 * * *
+    internal_type: periodic
+    groups:
+      monolith-load-appfigures-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-delighted-tables:
+    project: monolith
+    description: Loads data from Delighted which provides NPS reporting to the CX
+      team
+    cronitor_id: GEC0SO
+    type: batch
+    cron: 15 1 * * *
+    internal_type: periodic
+    groups:
+      monolith-load-delighted-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-google-consumer-survey:
+    project: monolith
+    description: Loads Google Consumer Survey responses into the google_consumer_survey_*
+      tables in the data warehouse.
+    cronitor_id: P0sGh3
+    type: batch
+    cron: 0 20 * * 3
+    internal_type: periodic
+    groups:
+      monolith-load-google-consumer-survey-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-greenhouse-tables:
+    project: monolith
+    description: Loads recruiting data into the DWH from the Greenhouse API.
+    cronitor_id: 6HZI42
+    type: batch
+    cron: 0 12 * * *
+    internal_type: periodic
+    groups:
+      monolith-load-greenhouse-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-talkdesk-reports:
+    project: monolith
+    description: Loads CX call reports and user reports into the data warehouse from
+      the TalkDesk API.
+    cronitor_id: fjI0wQ
+    type: batch
+    cron: 5 * * * *
+    internal_type: periodic
+    groups:
+      monolith-load-talkdesk-reports-group:
+        count: 1
+        maintenance_count: 0
+  monolith-load-yahoo-tables:
+    project: monolith
+    description: Loads search engine marketing performance reports from Yahoo gemini
+      API into the data warehouse.
+    cronitor_id: 5vRI60
+    type: batch
+    cron: 45 12 * * *
+    internal_type: periodic
+    groups:
+      monolith-load-yahoo-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-luigi-runner:
+    project: monolith
+    type: batch
+    internal_type: parameterized
+    groups:
+      monolith-luigi-runner-group:
+        count: 1
+        maintenance_count: 0
+  monolith-mls-reports-job:
+    project: monolith
+    description: Exports MLS data to an s3 bucket that is accessible by the MLS as
+      part of our partnership with them.
+    cronitor_id: iULpq2
+    type: batch
+    cron: 30 11 * * *
+    internal_type: periodic
+    groups:
+      monolith-mls-reports-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nba-reports-job:
+    project: monolith
+    description: Exports NBA data to an s3 bucket that is accessible by the NFL as
+      part of our partnership with them.
+    cronitor_id: wcHCGH
+    type: batch
+    cron: 30 13 * * *
+    internal_type: periodic
+    groups:
+      monolith-nba-reports-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nfl-listings-emr-job:
+    project: monolith
+    description: Exports NFL listings to an s3 bucket that is accessible by the NFL
+      as part of our partnership with them.
+    cronitor_id: LLvCRu
+    type: batch
+    cron: 15 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-nfl-listings-emr-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nfl-reports-job:
+    project: monolith
+    description: Exports NFL data to an s3 bucket that is accessible by the NFL as
+      part of our partnership with them.
+    cronitor_id: vU90EI
+    type: batch
+    cron: 45 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-nfl-reports-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nightly-adroll-job:
+    project: monolith
+    description: Loads data associated with AdRoll marketing campaigns into the adroll_*
+      tables in the data warehouse.
+    cronitor_id: jCFpmB
+    type: batch
+    cron: 25 6 * * *
+    internal_type: periodic
+    groups:
+      monolith-nightly-adroll-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nightly-adwords-job:
+    project: monolith
+    description: Loads search engine marketing performance reports from Google Adwords
+      API into the data warehouse.
+    cronitor_id: zJWId1
+    type: batch
+    cron: 0 12 * * *
+    internal_type: periodic
+    groups:
+      monolith-nightly-adwords-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nightly-bing-ads-job:
+    project: monolith
+    description: Loads search engine marketing performance reports from Bing Ads API
+      into the data warehouse.
+    cronitor_id: RUjpEc
+    type: batch
+    cron: 45 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-nightly-bing-ads-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nightly-dimensional-models-job:
+    project: monolith
+    description: |
+      Updates the dimensional model tables in the data warehouse,
+      including fact_inventory_daily_snapshot, and fact_event_page_view, amongst others.
+    cronitor_id: KgwIfs
+    type: batch
+    cron: 0 6 * * *
+    internal_type: periodic
+    groups:
+      monolith-nightly-dimensional-models-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nightly-facebook-job:
+    project: monolith
+    description: Collects SEM performance data across facebook campaigns. Intends
+      some failures.
+    cronitor_id: 5pfGqs
+    type: batch
+    cron: 30 7 * * *
+    internal_type: periodic
+    groups:
+      monolith-nightly-facebook-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nightly-google-search-console-job:
+    project: monolith
+    description: Pulls in data from google webmaster tools on search volume for particular
+      terms, useful for SEO. Currently on a 9-day delay due to bugs in the Google
+      API.
+    cronitor_id: K7yGl1
+    type: batch
+    cron: 50 6 * * *
+    internal_type: periodic
+    groups:
+      monolith-nightly-google-search-console-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-nightly-sprout-social-job:
+    project: monolith
+    description: Collects metrics tracking social media mentions, related posts, and
+      messages with SeatGeek accounts.
+    cronitor_id: Oxj05H
+    type: batch
+    cron: 45 1 * * *
+    internal_type: periodic
+    groups:
+      monolith-nightly-sprout-social-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-alerts-audiences:
+    project: monolith
+    description: Posts a dataset of users to alert about newly announced events. Deprecated.
+    cronitor_id: hvGpoH
+    type: batch
+    cron: 25 6 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-alerts-audiences-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-event-abandonment-audiences:
+    project: monolith
+    description: 'Defines an audience of users who have abandoned events they viewed
+      frequently. The consumer of this has been removed in favor of another system. '
+    cronitor_id: 6qhCBw
+    type: batch
+    cron: 0 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-event-abandonment-audiences-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-event-section-row-count:
+    project: monolith
+    description: Posts a dataset of aggregated inventory stats for consumption into
+      TZanalytic.
+    cronitor_id: nY3Iog
+    type: batch
+    cron: 30 5 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-event-section-row-count-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-price-history:
+    project: monolith
+    description: Updates the performer_price_history table in the data warehouse,
+      and outboxes that data for use in graphs on performer pages.
+    cronitor_id: a6WCTY
+    type: batch
+    cron: 22 8 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-price-history-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-scores:
+    project: monolith
+    description: Updates the scoreboard_event_scores table in the data warehouse,
+      and outboxes event and performer, mass momentum scores to the tzanalytic_event_score
+      table.
+    cronitor_id: DaVGky
+    type: batch
+    cron: 50 7,19 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-scores-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-sevenpack-analysis-results:
+    project: monolith
+    description: |
+      Outboxes experiment results from the private.sevenpack_analysis_results
+      table in the data warehouse to the sevenpack_analysis_results table
+      in the sevenpack database which backs the rufus experiment results UI.
+    cronitor_id: cCfplj
+    type: batch
+    cron: 15 1,5,9,13,17,21 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-sevenpack-analysis-results-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-sirius-event-preferences:
+    project: monolith
+    description: Posts a dataset of event-preferences, supporting a handful of social
+      features.
+    cronitor_id: t7dGKa
+    type: batch
+    cron: 0 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-sirius-event-preferences-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-sirius-performer-preferences:
+    project: monolith
+    description: Posts a dataset of performer-preferences, supporting a handful of
+      social features.
+    cronitor_id: QaRIrx
+    type: batch
+    cron: 0 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-sirius-performer-preferences-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-taxonomy-affinities:
+    project: monolith
+    description: Posts a dataset of aggregated preferences by event type, supporting
+      some browse personalization features.
+    cronitor_id: OFDpnr
+    type: batch
+    cron: 7 7 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-taxonomy-affinities-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-user-engagement-stats:
+    project: monolith
+    description: Posts a dataset of aggregated user activity for consumption into
+      Tzanalytic.
+    cronitor_id: twKGv9
+    type: batch
+    cron: 0 8 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-user-engagement-stats-group:
+        count: 1
+        maintenance_count: 0
+  monolith-outbox-user-relationships:
+    project: monolith
+    description: Posts a dataset of social data for consumption into Buzzfeed.
+    cronitor_id: mHlphM
+    type: batch
+    cron: 0 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-outbox-user-relationships-group:
+        count: 1
+        maintenance_count: 0
+  monolith-price-changes-emr-job:
+    project: monolith
+    description: Triggers the Sparkler PriceChangeJob that computes a daily price
+      index.
+    cronitor_id: pSCGhI
+    type: batch
+    cron: 45 7 * * *
+    internal_type: periodic
+    groups:
+      monolith-price-changes-emr-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-price-drop-outbox-job:
+    project: monolith
+    description: This job identifies events where the aggregate prices have changed
+      recently and sends a dataset of those events via Outbox to production.
+    cronitor_id: uUDpq6
+    type: batch
+    cron: 55 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-price-drop-outbox-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-run-sevenpack-aa-test-analysis:
+    project: monolith
+    description: |
+      Performs analysis for AA tests that are configured
+      and enabled in sevenpack, and loads the results in
+      the public.sevenpack_aa_test_results table in the data warehouse.
+    cronitor_id: Y9N0Rr
+    type: batch
+    cron: 45 10 * * *
+    internal_type: periodic
+    groups:
+      monolith-run-sevenpack-aa-test-analysis-group:
+        count: 1
+        maintenance_count: 0
+  monolith-run-sevenpack-experiment-analysis:
+    project: monolith
+    description: |
+      Performs analysis for AB tests that are configured
+      and enabled in sevenpack, and loads the results in
+      the private.sevenpack_analysis_results table in the data warehouse.
+    cronitor_id: lTLIkJ
+    type: batch
+    cron: 20 11 * * *
+    internal_type: periodic
+    groups:
+      monolith-run-sevenpack-experiment-analysis-group:
+        count: 1
+        maintenance_count: 0
+  monolith-search-analysis-load-job--outbox:
+    project: monolith
+    description: ETL processed search logs into Redshift
+    cronitor_id: kxlGoq
+    type: batch
+    cron: 55 7 * * *
+    internal_type: periodic
+    groups:
+      monolith-search-analysis-load-job--outbox-group:
+        count: 1
+        maintenance_count: 0
+  monolith-search-for-external-uploads-daily:
+    project: monolith
+    description: Uploads various manually-supplied marketing CSVs into Redshift
+    cronitor_id: flM0ta
+    type: batch
+    cron: 0 0 * * *
+    internal_type: periodic
+    groups:
+      monolith-search-for-external-uploads-daily-group:
+        count: 1
+        maintenance_count: 0
+  monolith-search-sequences-emr-job:
+    project: monolith
+    description: Triggers Sparkler SearchSequenceJob on EMR that processes search
+      logs from the API.
+    cronitor_id: gv2pZ3
+    type: batch
+    cron: 15 7 * * *
+    internal_type: periodic
+    groups:
+      monolith-search-sequences-emr-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-sessions:
+    project: monolith
+    description: Executes a SQL transformation updating our Sessions model with new
+      actions.
+    cronitor_id: GdVIa7
+    type: batch
+    cron: 55 2 * * *
+    internal_type: periodic
+    groups:
+      monolith-sessions-group:
+        count: 1
+        maintenance_count: 0
+  monolith-socialcode-job:
+    project: monolith
+    description: Sends SeatGeek user data via SFTP to Socialcode for social media
+      advertising audience generation.
+    cronitor_id: hrT0IW
+    type: batch
+    cron: 15 2 * * *
+    internal_type: periodic
+    groups:
+      monolith-socialcode-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-stellaconnect:
+    project: monolith
+    description: Loads customer service rep feedback data from the Stella Connect
+      API into the data warehouse
+    cronitor_id: UcnCR3
+    type: batch
+    cron: 0 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-stella-connect-group:
+        count: 1
+        maintenance_count: 0
+  monolith-trending-events-outbox:
+    project: monolith
+    description: |
+      Populates a ranked list of events by number of distinct
+      clicks in the past 24 hours, compares to the list from
+      the previous day, dumps the output to S3 and pings the
+      outbox service for trending-events.
+    cronitor_id: xfBCkt
+    type: batch
+    cron: 20 7 * * *
+    internal_type: periodic
+    groups:
+      monolith-trending-events-group:
+        count: 1
+        maintenance_count: 0
+  monolith-update-customer-tables:
+    project: monolith
+    description: Runs SQL to SQL transforms to build the customer model, which joins
+      across users, devices, etc. to estbalish a notion of an individual person.
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      monolith-update-customer-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-update-ga-tables:
+    project: monolith
+    description: Updates all the Google Analytics tables (~20). Usage unclear.
+    cronitor_id: 0VxCz8
+    type: batch
+    cron: 0 9 * * *
+    internal_type: periodic
+    groups:
+      monolith-update-ga-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-update-gtv-tables:
+    project: monolith
+    description: Builds Sales table. Failures are highest priority.
+    cronitor_id: uVWIKV
+    type: batch
+    cron: 15 1,3,5,7,9,11,13,15,17,19,21,23 * * *
+    internal_type: periodic
+    groups:
+      monolith-update-gtv-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-update-seasonality-tables:
+    project: monolith
+    description: 'Loads seasonality tables, which provide day-level adjustments to
+      GTV values to remove all seasonal effects. '
+    cronitor_id: OGgGzy
+    type: batch
+    cron: 0 7 * * *
+    internal_type: periodic
+    groups:
+      monolith-update-seasonality-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-update-sevenpack-tables:
+    project: monolith
+    description: Updates the sevenpack_event_show table. Used as a source of participations
+      for a large fraction of the sevenpack experiment analyses.
+    cronitor_id: 0Ps0FC
+    type: batch
+    cron: 0 15 * * 6
+    internal_type: periodic
+    groups:
+      monolith-update-sevenpack-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-user-locations-emr-job:
+    project: monolith
+    description: Triggers Sparkler UserLocationsJob job on EMR that builds the a data
+      set of users' last known locations
+    cronitor_id: 3fICfO
+    type: batch
+    cron: 15 4 * * *
+    internal_type: periodic
+    groups:
+      monolith-user-locations-emr-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-user-locations-loader-job:
+    project: monolith
+    description: Copies the output of the Sparkler UserLocationsJob to the data warehouse
+    cronitor_id: cSoCdP
+    type: batch
+    cron: 55 4 * * *
+    internal_type: periodic
+    groups:
+      monolith-user-locations-loader-job-group:
+        count: 1
+        maintenance_count: 0
+  monolith-vacuum-and-analyze-redshift-tables:
+    project: monolith
+    description: Runs vacuum and analyze commands on every table in the data warehouse
+      as part of our regular maintenance/housekeeping activities.
+    cronitor_id: s4FG02
+    type: batch
+    cron: 50 12 * * 6
+    internal_type: periodic
+    groups:
+      monolith-vacuum-and-analyze-redshift-tables-group:
+        count: 1
+        maintenance_count: 0
+  monolith-venue-audiences:
+    project: monolith
+    description: Identifies collections of users who should recieve notifications
+      about upcoming events at certain venues. Used by Pathos.
+    cronitor_id: ufrIYP
+    type: batch
+    cron: 0 23 * * *
+    internal_type: periodic
+    groups:
+      monolith-venue-audiences-group:
+        count: 1
+        maintenance_count: 0
+  monolith-zendesk:
+    project: monolith
+    description: Pulls data from the zendesk (cx ticketing system) api and writes
+      it to the data warehouse
+    cronitor_id: Dr90Tf
+    type: batch
+    cron: 10 * * * *
+    internal_type: periodic
+    groups:
+      monolith-zendesk-group:
+        count: 1
+        maintenance_count: 0
+  music-data-gator-cron-spotify-performer-worker:
+    project: music-data-gator
+    description: Ingest Spotify data on top artists and their relationships with one
+      another
+    cronitor_id: jDKC9O
+    type: batch
+    cron: 0 17 8 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  music-data-gator-cron-spotify-user-worker:
+    project: music-data-gator
+    type: batch
+    cron: 0 17 14 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  music-data-gator-server:
+    project: music-data-gator
+    type: service
+    internal_type: http-service
+    groups:
+      music-data-gator-server:
+        count: 2
+        maintenance_count: 2
+        services:
+        - music-data-gator-server
+  music-proxy-server:
+    project: music-proxy
+    type: service
+    internal_type: http-service
+    groups:
+      music-proxy-server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - music-proxy
+  music-story-etl:
+    project: music-story-etl
+    type: service
+    internal_type: http-service
+    groups:
+      music-story-etl:
+        count: 2
+        maintenance_count: 2
+        services:
+        - music-story-etl
+  music-story-etl-cron-create-wish-list:
+    project: music-story-etl
+    description: Create a wishlist of performers whose images we would like fulfilled
+      by Music Story
+    cronitor_id: RWTpL7
+    type: batch
+    cron: 0 6 * * 1
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  music-story-etl-cron-ingest:
+    project: music-story-etl
+    description: Step 2/2 of the ingestion of performer images provided by Music Story
+    cronitor_id: jMSClv
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  music-story-etl-cron-pre-ingest:
+    project: music-story-etl
+    description: Step 1/2 of the ingestion of performer images provided by Music Story
+    cronitor_id: ANbpyD
+    type: batch
+    cron: 30 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  nomad-compliance-reporter-server:
+    project: nomad-compliance-reporter
+    type: service
+    internal_type: http-service
+    groups:
+      performance-health-checker-server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - nomad-compliance-reporter
+  nomad-firehose-persister:
+    project: nomad-firehose-persister
+    type: service
+    internal_type: http-service
+    groups:
+      firehose-allocations:
+        count: 1
+        maintenance_count: 0
+      firehose-deployments:
+        count: 1
+        maintenance_count: 0
+      firehose-evaluations:
+        count: 1
+        maintenance_count: 0
+      firehose-jobs:
+        count: 1
+        maintenance_count: 0
+      firehose-nodes:
+        count: 1
+        maintenance_count: 0
+      persister:
+        count: 1
+        maintenance_count: 1
+        services:
+        - ${NOMAD_JOB_NAME}
+  normalization-http:
+    project: normalization
+    type: service
+    internal_type: http-service
+    groups:
+      normalization-http:
+        count: 30
+        maintenance_count: 30
+        services:
+        - normalization
+  notify-script-iterable-account-manager:
+    project: notify
+    type: batch
+    internal_type: parameterized
+    groups:
+      notify-script-iterable-account-manager:
+        count: 1
+        maintenance_count: 0
+  notify-worker-button:
+    project: notify
+    type: service
+    internal_type: background-worker
+    groups:
+      notify-worker-button:
+        count: 3
+        maintenance_count: 0
+  notify-worker-iterable:
+    project: notify
+    type: service
+    internal_type: background-worker
+    groups:
+      notify-worker-iterable:
+        count: 24
+        maintenance_count: 0
+  notify-worker-seatgeek:
+    project: notify
+    type: service
+    internal_type: background-worker
+    groups:
+      notify-worker-seatgeek:
+        count: 3
+        maintenance_count: 0
+  notify-worker-third-party:
+    project: notify
+    type: service
+    internal_type: background-worker
+    groups:
+      notify-worker-third-party:
+        count: 3
+        maintenance_count: 0
+  open-admin-external:
+    project: open-admin
+    type: service
+    internal_type: http-service
+    groups:
+      open-admin-external:
+        count: 2
+        maintenance_count: 2
+        services:
+        - open-admin
+  open-search-external:
+    project: open-search
+    type: service
+    internal_type: http-service
+    groups:
+      open-search-external:
+        count: 2
+        maintenance_count: 2
+        services:
+        - open-search
+  outbox-service-http:
+    project: outbox-service
+    type: service
+    internal_type: http-service
+    groups:
+      outbox-service-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - outbox
+  pathos-http:
+    project: pathos
+    type: service
+    internal_type: http-service
+    groups:
+      pathos-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - pathos
+  paulbunyan-http:
+    project: paulbunyan
+    type: service
+    internal_type: http-service
+    groups:
+      paulbunyan-http:
+        count: 4
+        maintenance_count: 4
+        services:
+        - paulbunyan
+  peakpass-barcode-change-monitor:
+    project: peakpass
+    type: batch
+    internal_type: parameterized
+    groups:
+      peakpass-barcode-change-monitor:
+        count: 1
+        maintenance_count: 0
+  peakpass-barcode-notifications-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-barcode-notifications-worker:
+        count: 2
+        maintenance_count: 0
+  peakpass-barcode-poller:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-barcode-poller:
+        count: 1
+        maintenance_count: 0
+  peakpass-event-mapping-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-event-mapping-worker:
+        count: 1
+        maintenance_count: 0
+  peakpass-http:
+    project: peakpass
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 20
+        maintenance_count: 20
+        services:
+        - peakpass
+  peakpass-invalid-ticket-resale-listing-closer:
+    project: peakpass
+    type: batch
+    cron: 0 10 * * 1-5
+    internal_type: periodic
+    groups:
+      peakpass-invalid-ticket-resale-listing-closer:
+        count: 1
+        maintenance_count: 0
+  peakpass-print-status-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-print-status-worker:
+        count: 1
+        maintenance_count: 0
+  peakpass-slack-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-slack-worker:
+        count: 1
+        maintenance_count: 0
+  peakpass-sro-transaction-cache-monitor:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-sro-transaction-cache-monitor:
+        count: 1
+        maintenance_count: 0
+  peakpass-test-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-test-worker:
+        count: 1
+        maintenance_count: 0
+  peakpass-ticket-exchange-state-reconciler:
+    project: peakpass
+    type: batch
+    cron: 0 8,12,17,22 * * *
+    internal_type: periodic
+    groups:
+      peakpass-ticket-exchange-state-reconcilcer:
+        count: 1
+        maintenance_count: 0
+  peakpass-ticket-exchange-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-ticket-exchange-worker:
+        count: 1
+        maintenance_count: 0
+  peakpass-ticket-reprint-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-ticket-reprint-worker:
+        count: 1
+        maintenance_count: 0
+  peakpass-ticket-status-notifications-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-ticket-status-notifications-worker:
+        count: 1
+        maintenance_count: 0
+  peakpass-vam-cache-purge-worker:
+    project: peakpass
+    type: service
+    internal_type: background-worker
+    groups:
+      peakpass-vam-cache-purge-worker:
+        count: 1
+        maintenance_count: 0
+  plot-cron-regenerate-all-images:
+    project: plot
+    description: Queue up all performer images to be regenerated
+    cronitor_id: B2Dpwx
+    type: batch
+    cron: 0 0 1 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  plot-http:
+    project: plot
+    type: service
+    internal_type: http-service
+    groups:
+      application:
+        count: 20
+        maintenance_count: 20
+        services:
+        - plot
+  plot-worker:
+    project: plot
+    type: service
+    internal_type: background-worker
+    groups:
+      application:
+        count: 2
+        maintenance_count: 0
+  powerball-external:
+    project: powerball
+    type: service
+    internal_type: http-service
+    groups:
+      powerball-external:
+        count: 2
+        maintenance_count: 2
+        services:
+        - powerball
+  powerball-internal:
+    project: powerball
+    type: service
+    internal_type: http-service
+    groups:
+      powerball-internal:
+        count: 2
+        maintenance_count: 2
+        services:
+        - ${NOMAD_JOB_NAME}
+  powerball-user-lottery-info-backfill:
+    project: powerball
+    type: batch
+    internal_type: parameterized
+    groups:
+      user-lottery-info-backfill:
+        count: 1
+        maintenance_count: 0
+  primary-integration-gateway-external:
+    project: primary-integration-gateway
+    type: service
+    internal_type: http-service
+    groups:
+      primary-integration-gateway-external:
+        count: 8
+        maintenance_count: 8
+        services:
+        - primary-integration-gateway
+  primary-integration-gateway-internal:
+    project: primary-integration-gateway
+    type: service
+    internal_type: http-service
+    groups:
+      primary-integration-gateway-internal:
+        count: 8
+        maintenance_count: 8
+        services:
+        - primary-integration-gateway-internal
+  rds-log-shipper-worker:
+    project: rds-log-shipper
+    type: service
+    internal_type: background-worker
+    groups:
+      worker:
+        count: 0
+        maintenance_count: 0
+  recon-commander:
+    project: recon
+    type: batch
+    internal_type: parameterized
+    groups:
+      recon-commander:
+        count: 1
+        maintenance_count: 0
+  recon-cron-rebuild-elastic:
+    project: recon
+    description: Periodic rebuild of recon's matching-es elasticsearch from scrapedb
+      data. Updates in place
+    cronitor_id: bx9GOQ
+    type: batch
+    cron: 5 20 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  recon-cron-scrape-full-pass:
+    project: recon
+    description: This is the big overnight scrape, utilizing workspace db and copying
+      data to RDS scrape DB at the end
+    cronitor_id: ry3Isj
+    type: batch
+    cron: 0 0 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+        services:
+        - recon-cron-scrape-full-pass
+  recon-cron-store-seatgeek-ids:
+    project: recon
+    description: Updates seatgeek_id column on scrapedb's merge events
+    cronitor_id: YF4IAo
+    type: batch
+    cron: 0 18 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  recon-cron-touchup:
+    project: recon
+    description: Bumps value of updated_at to present time for some merge events,
+      performers/teambands, and venues
+    cronitor_id: ccMIqE
+    type: batch
+    cron: 0 20 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  recon-elastic-server:
+    project: recon-elastic
+    type: service
+    internal_type: http-service
+    groups:
+      recon-elastic-server:
+        count: 3
+        maintenance_count: 3
+        services:
+        - recon-elastic
+  recon-http:
+    project: recon
+    type: service
+    internal_type: http-service
+    groups:
+      recon-http:
+        count: 8
+        maintenance_count: 8
+        services:
+        - recon
+  recon-nro-http:
+    project: recon
+    type: service
+    internal_type: http-service
+    groups:
+      recon-nro-http:
+        count: 3
+        maintenance_count: 3
+        services:
+        - nro
+  recon-shell:
+    project: recon
+    type: service
+    internal_type: background-worker
+    groups:
+      shell:
+        count: 1
+        maintenance_count: 0
+  recon-worker:
+    project: recon
+    type: service
+    internal_type: background-worker
+    groups:
+      recon-worker:
+        count: 3
+        maintenance_count: 0
+  redis-telegraf:
+    project: ""
+    type: service
+    internal_type: background-worker
+    groups:
+      server:
+        count: 1
+        maintenance_count: 0
+  request-logger-http:
+    project: request-logger
+    type: service
+    internal_type: http-service
+    groups:
+      request-logger-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - request-logger
+  rescraper-http:
+    project: rescraper
+    type: service
+    internal_type: http-service
+    groups:
+      rescraper-http:
+        count: 16
+        maintenance_count: 16
+        services:
+        - rescraper
+  scoreboard-event-scores:
+    project: scoreboard
+    description: Generates predictions for event mass and momentum and exports those
+      predictions to the private.scoreboard_event_scores table in the data warehouse.
+    cronitor_id: t5XpnV
+    type: batch
+    cron: 0 6,18 * * *
+    internal_type: periodic
+    groups:
+      scoreboard-event-scores:
+        count: 1
+        maintenance_count: 0
+  scoreboard-predict-fulfillment-times:
+    project: scoreboard
+    description: Generates predictions for fulfillment times for unfulfilled orders
+      and exports those predictions to the private.scoreboard_fulfillment_times table
+      in the data warehouse.
+    cronitor_id: 8SxpZz
+    type: batch
+    cron: 30 5 * * *
+    internal_type: periodic
+    groups:
+      scoreboard-predict-fulfillment-times:
+        count: 1
+        maintenance_count: 0
+  scoreboard-predict-refund-rates:
+    project: scoreboard
+    description: Generates predictions for refund rates for all orders that occured
+      yesterday and stores them in private.scoreboard_refund_rates
+    cronitor_id: b2opgU
+    type: batch
+    cron: 30 20 * * *
+    internal_type: periodic
+    groups:
+      scoreboard-predict-refund-rates:
+        count: 1
+        maintenance_count: 0
+  scoreboard-train-fulfillment-time-model:
+    project: scoreboard
+    description: Trains a model that predicts order fulfillment times and stores that
+      model in the s3://seatgeek-delphi bucket to refresh the model that is being
+      served by the delphi service.
+    cronitor_id: MnDCoZ
+    type: batch
+    cron: 0 11 * * 0
+    internal_type: periodic
+    groups:
+      scoreboard-train-fulfillment-time-model:
+        count: 1
+        maintenance_count: 0
+  scoreboard-train-refund-rate-model:
+    project: scoreboard
+    description: Trains a model that predicts order refund rates for a given listing
+      assuming that it sells at a given time
+    cronitor_id: URBCcB
+    type: batch
+    cron: 0 15 * * 0
+    internal_type: periodic
+    groups:
+      scoreboard-train-refund-rate-model:
+        count: 1
+        maintenance_count: 0
+  scout-external:
+    project: scout
+    type: service
+    internal_type: http-service
+    groups:
+      scout-external:
+        count: 1
+        maintenance_count: 1
+        services:
+        - scout
+  sears-backup-catalog-indices:
+    project: sears
+    description: Backup catalog indices
+    cronitor_id: 5TwCkE
+    type: batch
+    cron: 0 8 * * *
+    internal_type: periodic
+    groups:
+      sears-backup-catalog-indices:
+        count: 1
+        maintenance_count: 0
+  sears-cache-primer:
+    project: sears
+    description: Populate cache from elasticsearch
+    cronitor_id: tji0fO
+    type: batch
+    cron: 0 */3 * * * *
+    internal_type: periodic
+    groups:
+      cache-primer:
+        count: 1
+        maintenance_count: 0
+  sears-external-autocomplete:
+    project: sears
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 15
+        maintenance_count: 15
+        services:
+        - autocomplete
+  sears-http:
+    project: sears
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 32
+        maintenance_count: 32
+        services:
+        - sears-http
+  sears-index-docs-enqueuer:
+    project: sears
+    description: Enqueue non-event docs to be re-indexed
+    cronitor_id: DSXpap
+    type: batch
+    cron: 0 12 * * *
+    internal_type: periodic
+    groups:
+      sears-index-docs-enqueuer:
+        count: 1
+        maintenance_count: 0
+  sears-index-reverter:
+    project: sears
+    type: batch
+    internal_type: parameterized
+    groups:
+      sears-index-reverter:
+        count: 1
+        maintenance_count: 0
+  sears-loader-autocomplete:
+    project: sears
+    description: Reindex autocomplete
+    cronitor_id: ibDpcG
+    type: batch
+    cron: 0 10 * * *
+    internal_type: periodic
+    groups:
+      loader:
+        count: 1
+        maintenance_count: 0
+  sears-loader-full-catalog:
+    project: sears
+    type: batch
+    internal_type: parameterized
+    groups:
+      sears-loader-full-catalog:
+        count: 1
+        maintenance_count: 0
+  sears-loader-realtime-autocomplete-indexer:
+    project: sears
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - sears-loader-realtime-autocomplete-indexer
+  sears-loader-realtime-catalog-indexer:
+    project: sears
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - sears-loader-realtime-catalog-indexer
+  sears-loader-realtime-catalog-updater:
+    project: sears
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - loader-realtime-catalog-updater
+  seatgeek-admin:
+    project: seatgeek
+    type: service
+    internal_type: http-service
+    groups:
+      seatgeek-admin:
+        count: 1
+        maintenance_count: 1
+        services:
+        - seatgeek-admin
+  seatgeek-cron-app-generate-fansnap-bing-event-production-feeds:
+    project: seatgeek
+    description: Generate the production event feed for bing
+    cronitor_id: l5tGez
+    type: batch
+    cron: 10 */2 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-generate-fansnap-bing-event-staging-feeds:
+    project: seatgeek
+    description: Generate the staging event feed for bing
+    cronitor_id: zcdIRS
+    type: batch
+    cron: 30 9 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-generate-fansnap-bing-venue-production-feeds:
+    project: seatgeek
+    description: Generate the production venue feed for bing
+    cronitor_id: dlZCOY
+    type: batch
+    cron: 20 */2 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-generate-fansnap-bing-venue-staging-feeds:
+    project: seatgeek
+    description: Generate the staging venue feed for bing
+    cronitor_id: 0nRGOC
+    type: batch
+    cron: 40 9 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-keep-super-bowl-map-data-up-to-date:
+    project: seatgeek
+    description: Update the data for https://seatgeek.com/super-bowl-ticket-tracker
+    cronitor_id: p0lIPB
+    type: batch
+    cron: 0 5 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-rebuild-navdata-cache:
+    project: seatgeek
+    description: Updates the data which populates the main site navigation
+    cronitor_id: RPXGPj
+    type: batch
+    cron: '*/10 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-update-all-short-display-names-for-venue-configs:
+    project: seatgeek
+    description: Update venue config short names for all records
+    cronitor_id: uL4Gi2
+    type: batch
+    cron: 0 0 28 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-update-event-sitemaps:
+    project: seatgeek
+    description: Regenerates and uploads Event xml sitemap files to s3
+    cronitor_id: EPqpSS
+    type: batch
+    cron: 0 0-11,13-23 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-update-matchups:
+    project: seatgeek
+    description: Creates newly detected matchups between sports teams, and updates
+      slugs and scores for all matchup records
+    cronitor_id: I1uGg2
+    type: batch
+    cron: 0 12 1 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-update-missing-short-display-names-for-venue-configs:
+    project: seatgeek
+    description: Update venue config short names only for records with no short name
+    cronitor_id: DMLGCm
+    type: batch
+    cron: 0 5 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-update-performer-city-pages:
+    project: seatgeek
+    description: Creates/activates performer-city-page records for pages with events,
+      and deactivates any records for pages which do not have any events
+    cronitor_id: jLC0av
+    type: batch
+    cron: 0 11 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-update-sitemaps:
+    project: seatgeek
+    description: Regenerates and uploads all xml sitemap files to s3
+    cronitor_id: d7JpRF
+    type: batch
+    cron: 0 12 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-update-team-home-venues:
+    project: seatgeek
+    description: Determine sport team's home-venues using recent event data
+    cronitor_id: HdSpNx
+    type: batch
+    cron: 0 0 28 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-app-venue-statistics:
+    project: seatgeek
+    description: Update tzanalytic_venue_stat data for all venues. Generates a VenueStatJob
+      (heavy job queue) for all venues
+    cronitor_id: HWMG3H
+    type: batch
+    cron: 30 13 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-recon-eagle-just-now:
+    project: seatgeek
+    description: Updates tzanalytic events/performers/venues modified in recon since
+      last run, but not yet pushed to seatgeek, Utilizes recon-http and seatgeek PHP
+      workers
+    cronitor_id: JvNG43
+    type: batch
+    cron: 55 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-recon-super-eagle:
+    project: seatgeek
+    description: Run the recon super-eagle process - which calls all the other daily
+      eagle tasks. Updates many tzanalytic events/performers/venues following recon's
+      nightly full-pass scrape. Utilizes recon-http and seatgeek PHP workers
+    cronitor_id: DQgCex
+    type: batch
+    cron: 0 16 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-cron-update-browscap:
+    project: seatgeek
+    description: Uploads the latest browscap file to s3. Browscap is responsible for
+      mobile device detection
+    cronitor_id: uNDCZR
+    type: batch
+    cron: 0 0 28 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  seatgeek-default-worker:
+    project: seatgeek
+    type: service
+    internal_type: background-worker
+    groups:
+      seatgeek-default-worker:
+        count: 1
+        maintenance_count: 0
+  seatgeek-enterprise-http:
+    project: seatgeek-enterprise
+    type: service
+    internal_type: http-service
+    groups:
+      seatgeek-enterprise-http:
+        count: 3
+        maintenance_count: 3
+        services:
+        - seatgeek-enterprise
+  seatgeek-event-scrape-worker:
+    project: seatgeek
+    type: service
+    internal_type: background-worker
+    groups:
+      seatgeek-event-scrape-worker:
+        count: 1
+        maintenance_count: 0
+  seatgeek-heavy-worker:
+    project: seatgeek
+    type: service
+    internal_type: background-worker
+    groups:
+      seatgeek-heavy-worker:
+        count: 10
+        maintenance_count: 0
+  seatgeek-http:
+    project: seatgeek
+    type: service
+    internal_type: http-service
+    groups:
+      seatgeek-http:
+        count: 96
+        maintenance_count: 96
+        services:
+        - seatgeek
+  seatgeek-hypernova:
+    project: seatgeek
+    type: service
+    internal_type: http-service
+    groups:
+      seatgeek-hypernova:
+        count: 24
+        maintenance_count: 24
+        services:
+        - seatgeek-hypernova
+  seatgeek-maps-worker:
+    project: seatgeek
+    type: service
+    internal_type: background-worker
+    groups:
+      seatgeek-maps-worker:
+        count: 1
+        maintenance_count: 0
+  seatgeek-outbox-ingest-event-visitor-counts:
+    project: seatgeek
+    description: Update event visitor counts
+    cronitor_id: lPAG0z
+    type: batch
+    internal_type: parameterized
+    groups:
+      seatgeek-outbox-ingest-event-visitor-counts:
+        count: 1
+        maintenance_count: 0
+  seatgeek-outbox-ingest-matchups-ticket-prices:
+    project: seatgeek
+    description: Update matchup ticket prices
+    cronitor_id: EpBCgo
+    type: batch
+    internal_type: parameterized
+    groups:
+      seatgeek-outbox-ingest-matchups-ticket-prices:
+        count: 1
+        maintenance_count: 0
+  seatgeek-outbox-ingest-performer-music-ticket-prices:
+    project: seatgeek
+    description: Update music performer ticket prices
+    cronitor_id: lbACst
+    type: batch
+    internal_type: parameterized
+    groups:
+      seatgeek-outbox-ingest-performer-music-ticket-prices:
+        count: 1
+        maintenance_count: 0
+  seatgeek-outbox-ingest-performer-sports-ticket-prices:
+    project: seatgeek
+    description: Update sports performer season game ticket prices
+    cronitor_id: ukl0fv
+    type: batch
+    internal_type: parameterized
+    groups:
+      seatgeek-outbox-ingest-performer-sports-ticket-prices:
+        count: 1
+        maintenance_count: 0
+  seatgeek-outbox-ingest-performers-whitelist:
+    project: seatgeek
+    description: Update performer whitelist data, provided by dw report
+    cronitor_id: RLNImN
+    type: batch
+    internal_type: parameterized
+    groups:
+      seatgeek-outbox-ingest-performers-whitelist:
+        count: 1
+        maintenance_count: 0
+  seatgeek-outbox-ingest-playoffs-ticket-prices:
+    project: seatgeek
+    description: Update sports performer playoff ticket prices
+    cronitor_id: CLVIlL
+    type: batch
+    internal_type: parameterized
+    groups:
+      seatgeek-outbox-ingest-playoffs-ticket-prices:
+        count: 1
+        maintenance_count: 0
+  seatgeek-outbox-ingest-venues-whitelist:
+    project: seatgeek
+    description: Update venue whitelist data, provided by dw report
+    cronitor_id: ugnI22
+    type: batch
+    internal_type: parameterized
+    groups:
+      seatgeek-outbox-ingest-venues-whitelist:
+        count: 1
+        maintenance_count: 0
+  seatgeek-pre-deploy-upload-assets:
+    project: seatgeek
+    type: batch
+    internal_type: parameterized
+    groups:
+      pre-hooks:
+        count: 1
+        maintenance_count: 0
+  seatgeek-quick-worker:
+    project: seatgeek
+    type: service
+    internal_type: background-worker
+    groups:
+      seatgeek-quick-worker:
+        count: 5
+        maintenance_count: 0
+  seatgeek-recon-worker:
+    project: seatgeek
+    type: service
+    internal_type: background-worker
+    groups:
+      seatgeek-recon-worker:
+        count: 10
+        maintenance_count: 0
+  seatgeek-styleguide:
+    project: seatgeek
+    type: service
+    internal_type: http-service
+    groups:
+      seatgeek-styleguide:
+        count: 1
+        maintenance_count: 1
+        services:
+        - styleguide
+  seekgeek-http:
+    project: seekgeek
+    type: service
+    internal_type: http-service
+    groups:
+      seekgeek-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - seekgeek
+  sellerdirect-cron-seller-direct-compute-running-invoices:
+    project: sellerdirect
+    description: computes running totals of charges and subtotals for each seller
+      so far in the current invoice period
+    cronitor_id: Bdwp3h
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-emit-current-est-hour:
+    project: sellerdirect
+    description: helper job to allow us to set grafana alerts based on the hour of
+      the day
+    cronitor_id: 77NCkX
+    type: batch
+    cron: 0 * * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-full-recon-for-event-keys:
+    project: sellerdirect
+    description: rematches all event_keys to allow for any updates in recon system
+    cronitor_id: tn3ICd
+    type: batch
+    cron: 0 8,14,20,2 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-invalidate-unconfirmed-orders:
+    project: sellerdirect
+    description: rejects any orders that do not get confirmed by uploader within 20
+      min; alerts seller + customer
+    cronitor_id: OzGGaS
+    type: batch
+    cron: '*/5 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-mark-shipped-orders-as-fulfilled:
+    project: sellerdirect
+    description: marks shipped orders fulfilled if they have been shipped
+    cronitor_id: ZecGZ0
+    type: batch
+    cron: '*/10 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-populate-listing-deal-quality:
+    project: sellerdirect
+    description: Enqueues fetching the deal scores for sellerdirect listings
+    cronitor_id: uuOpBl
+    type: batch
+    cron: 0 5 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-scan-for-listing-tokens-to-unregister:
+    project: sellerdirect
+    description: Scans for registered listing tokens that are inactive and enqueues
+      messages to unregister them
+    cronitor_id: 0LZClZ
+    type: batch
+    cron: '*/10 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-scan-for-listings-needing-tokens-from-api-1ticket:
+    project: sellerdirect
+    description: scans for listings from the 1ticket API which require tokens
+    cronitor_id: BQ6pFb
+    type: batch
+    cron: 0 0/4 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-scan-for-listings-needing-tokens-from-api-dti:
+    project: sellerdirect
+    description: This job scans recently created or updated listings and asks DTI
+      for listing tokens associated with them
+    cronitor_id: 4M4p1W
+    type: batch
+    cron: 0 0/2 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-scan-for-listings-needing-tokens-from-api-ticketattendant:
+    project: sellerdirect
+    description: This job scans recently created or updated listings and asks ticketattendant
+      for listing tokens associated with them
+    cronitor_id: osUCOp
+    type: batch
+    cron: 0 0/2 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-scan-for-listings-reprocess-verification:
+    project: sellerdirect
+    description: This job goes through and recomputes the is_verified flag on the
+      listing
+    cronitor_id: 55aGcV
+    type: batch
+    cron: '*/10 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-scan-for-listings-with-no-event-keys:
+    project: sellerdirect
+    description: This job searches for listings that need a event_key to be assigned
+      to them and computes a event key hash and assigns it
+    cronitor_id: xu6pKL
+    type: batch
+    cron: '* * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-search-for-unsubmitted-orders:
+    project: sellerdirect
+    description: Searches for orders that need to be submitted to the uploader and
+      queues it
+    cronitor_id: 6aPCmM
+    type: batch
+    cron: '* * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-seller-probation-check:
+    project: sellerdirect
+    description: This job checks the probation status of sellers in the probation
+      program
+    cronitor_id: 0VvpsZ
+    type: batch
+    cron: '*/15 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-send-fulfillment-reminder-emails:
+    project: sellerdirect
+    description: Sends sellers emails about orders that need to be fulfilled.
+    cronitor_id: adUGlp
+    type: batch
+    cron: 0 14 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-stats-job:
+    project: sellerdirect
+    description: Sends stats about the system in a regular interval counts to grafana.
+    cronitor_id: qBaIe2
+    type: batch
+    cron: '*/5 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-truncate-tables:
+    project: sellerdirect
+    description: Truncates the sellerdirect tables of stale listings, old seller locks
+      and old seller listing files
+    cronitor_id: 7xXIOO
+    type: batch
+    cron: 0 7 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-direct-validate-shipping-addresses:
+    project: sellerdirect
+    description: This job goes and validates shipping address for sellerdirect orders.
+    cronitor_id: S7ppXc
+    type: batch
+    cron: '*/30 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-cron-seller-scan-for-listing-tokens-to-register:
+    project: sellerdirect
+    description: This job goes and attempts to register the listing tokens for listings
+      with the pig service.
+    cronitor_id: CxxIym
+    type: batch
+    cron: '*/5 * * * *'
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sellerdirect-external:
+    project: sellerdirect
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 12
+        maintenance_count: 12
+        services:
+        - sellerdirect-external
+  sellerdirect-internal:
+    project: sellerdirect
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 24
+        maintenance_count: 24
+        services:
+        - sellerdirect
+  sellerdirect-portal:
+    project: sellerdirect-portal
+    type: service
+    internal_type: http-service
+    groups:
+      sellerdirect-portal:
+        count: 2
+        maintenance_count: 2
+        services:
+        - sellerdirect-portal
+  sellerdirect-worker-csv-process:
+    project: sellerdirect
+    type: service
+    internal_type: background-worker
+    groups:
+      sellerdirect-worker-csv-process:
+        count: 22
+        maintenance_count: 0
+  sellerdirect-worker-listing-token-external:
+    project: sellerdirect
+    type: service
+    internal_type: background-worker
+    groups:
+      sellerdirect-worker-listing-token-external:
+        count: 32
+        maintenance_count: 0
+  sellerdirect-worker-listing-token-internal:
+    project: sellerdirect
+    type: service
+    internal_type: background-worker
+    groups:
+      sellerdirect-worker-listing-token-internal:
+        count: 32
+        maintenance_count: 0
+  sellerdirect-worker-matching:
+    project: sellerdirect
+    type: service
+    internal_type: background-worker
+    groups:
+      sellerdirect-worker-matching:
+        count: 24
+        maintenance_count: 0
+  sellerdirect-worker-misc:
+    project: sellerdirect
+    type: service
+    internal_type: background-worker
+    groups:
+      sellerdirect-worker-misc:
+        count: 8
+        maintenance_count: 0
+  sellerdirect-worker-orders:
+    project: sellerdirect
+    type: service
+    internal_type: background-worker
+    groups:
+      sellerdirect-worker-orders:
+        count: 8
+        maintenance_count: 0
+  sellerdirect-worker-seller-probation:
+    project: sellerdirect
+    type: service
+    internal_type: background-worker
+    groups:
+      sellerdirect-worker-seller-probation:
+        count: 1
+        maintenance_count: 0
+  sem-service-http:
+    project: sem-service
+    type: service
+    internal_type: http-service
+    groups:
+      sem-service-http:
+        count: 3
+        maintenance_count: 3
+        services:
+        - sem-service
+  sem-service-worker:
+    project: sem-service
+    type: service
+    internal_type: background-worker
+    groups:
+      sem-service-worker:
+        count: 1
+        maintenance_count: 0
+  sevenpack-cron-analysis-results-outbox-job:
+    project: sevenpack
+    type: batch
+    cron: 30 13,17,21,9,5,1 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sevenpack-external:
+    project: sevenpack
+    type: service
+    internal_type: http-service
+    groups:
+      sevenpack-external:
+        count: 3
+        maintenance_count: 3
+        services:
+        - sevenpack-external
+  sevenpack-internal:
+    project: sevenpack
+    type: service
+    internal_type: http-service
+    groups:
+      sevenpack-internal:
+        count: 3
+        maintenance_count: 3
+        services:
+        - sevenpack
+  sg-dbt-finops:
+    project: sg-dbt
+    description: Executes SQL transforms of tables in the finops redshift schema
+    cronitor_id: 5nT0cS
+    type: batch
+    cron: 15 3-23/6 * * *
+    internal_type: periodic
+    groups:
+      sg-dbt-finops:
+        count: 1
+        maintenance_count: 0
+  sg-dbt-pii:
+    project: sg-dbt
+    description: Executes SQL transforms of tables in the pii redshift schema
+    cronitor_id: Y1kCLF
+    type: batch
+    cron: 0 3-23/6 * * *
+    internal_type: periodic
+    groups:
+      sg-dbt-pii:
+        count: 1
+        maintenance_count: 0
+  sg-dbt-public:
+    project: sg-dbt
+    description: Executes SQL transforms of tables in the public redshift schema
+    cronitor_id: 6p6Cmj
+    type: batch
+    cron: 30 3/4 * * *
+    internal_type: periodic
+    groups:
+      sg-dbt-public:
+        count: 1
+        maintenance_count: 0
+  sg-dbt-public-nightly:
+    project: sg-dbt
+    description: Executes SQL transforms to update large analytic tables in the public
+      redshift schema
+    cronitor_id: mrQChv
+    type: batch
+    cron: 50 11 * * *
+    internal_type: periodic
+    groups:
+      sg-dbt-public-nightly:
+        count: 1
+        maintenance_count: 0
+  sg-dbt-seed-sgo:
+    project: sg-dbt
+    description: Refreshes seed data within the sgo redshift schema
+    cronitor_id: kxMCqI
+    type: batch
+    cron: 45 3-23/6 * * *
+    internal_type: periodic
+    groups:
+      sg-dbt-seed-sgo:
+        count: 1
+        maintenance_count: 0
+  sg-enterprise-admin-http:
+    project: sg-enterprise-admin
+    type: service
+    internal_type: http-service
+    groups:
+      sg-enterprise-admin-http:
+        count: 2
+        maintenance_count: 2
+        services:
+        - sg-enterprise-admin
+  sgo-graph-internal:
+    project: sgo-graph
+    type: service
+    internal_type: http-service
+    groups:
+      sgo-graph-internal:
+        count: 1
+        maintenance_count: 1
+        services:
+        - sgo-graph
+  sgo-test-studio-external:
+    project: sgo-test-studio
+    type: service
+    internal_type: http-service
+    groups:
+      sgo-test-studio-external:
+        count: 1
+        maintenance_count: 1
+        services:
+        - sgo-test-studio
+  sidekick-cowboys:
+    project: sidekick
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - cowboys-sidekick
+  sidekick-lafc:
+    project: sidekick
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - lafc-sidekick
+  sidekick-skc:
+    project: sidekick
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - skc-sidekick
+  sidekick-sounders:
+    project: sidekick
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - sounders-sidekick
+  sirius-cron-event-preferences:
+    project: sirius
+    description: Update the EventPreference table from outbox
+    cronitor_id: C5EpU6
+    type: batch
+    cron: 55 12 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sirius-cron-performer-preferences:
+    project: sirius
+    description: Update the PerformerPreference table from outbox
+    cronitor_id: JLNGd5
+    type: batch
+    cron: 10 10 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sirius-cron-user-relationships:
+    project: sirius
+    description: Update the UserRelationships table from outbox
+    cronitor_id: esrG3H
+    type: batch
+    cron: 10 10 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  sirius-http:
+    project: sirius
+    type: service
+    internal_type: http-service
+    groups:
+      sirius-http:
+        count: 8
+        maintenance_count: 8
+        services:
+        - sirius
+  snowcation-http:
+    project: snowcation
+    type: service
+    internal_type: http-service
+    groups:
+      snowcation-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - snowcation
+  social-images-http:
+    project: social-images
+    type: service
+    internal_type: http-service
+    groups:
+      social-images-http:
+        count: 4
+        maintenance_count: 4
+        services:
+        - social-images
+  sql-max-connections-checker:
+    project: sql-max-connections-checker
+    type: service
+    internal_type: background-worker
+    groups:
+      sql-max-connections-checker:
+        count: 1
+        maintenance_count: 0
+  star-airflow-scheduler:
+    project: star
+    type: service
+    internal_type: background-worker
+    groups:
+      star-airflow-scheduler:
+        count: 1
+        maintenance_count: 0
+  star-airflow-webserver:
+    project: star
+    type: service
+    internal_type: http-service
+    groups:
+      star-airflow-webserver:
+        count: 1
+        maintenance_count: 1
+        services:
+        - star-airflow-webserver
+  stats-util:
+    project: stats-util
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - stats-util
+  synchronizer-sub-sears-api:
+    project: synchronizer
+    type: service
+    internal_type: background-worker
+    groups:
+      synchronizer-sub-sears-api:
+        count: 0
+        maintenance_count: 0
+  tba-http:
+    project: tba
+    type: service
+    internal_type: http-service
+    groups:
+      tba-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - tba
+  tba-internal:
+    project: tba
+    type: service
+    internal_type: http-service
+    groups:
+      tba-internal:
+        count: 2
+        maintenance_count: 2
+        services:
+        - tba-internal
+  ted-http:
+    project: ted
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 3
+        maintenance_count: 3
+        services:
+        - ted
+  ticketparse-data-mining-parse-worker:
+    project: ticketparse
+    type: service
+    internal_type: background-worker
+    groups:
+      ticketparse-data-mining-parse-worker:
+        count: 1
+        maintenance_count: 0
+  ticketparse-image-process-worker:
+    project: ticketparse
+    type: service
+    internal_type: background-worker
+    groups:
+      ticketparse-image-process-worker:
+        count: 1
+        maintenance_count: 0
+  ticketparse-ingestions-worker:
+    project: ticketparse
+    type: service
+    internal_type: background-worker
+    groups:
+      ticketparse-ingestions-worker:
+        count: 3
+        maintenance_count: 0
+  ticketparse-parse-worker:
+    project: ticketparse
+    type: service
+    internal_type: background-worker
+    groups:
+      ticketparse-parse-worker:
+        count: 12
+        maintenance_count: 0
+  ticketparse-screenshot-worker:
+    project: ticketparse
+    type: service
+    internal_type: background-worker
+    groups:
+      ticketparse-screenshot-worker:
+        count: 10
+        maintenance_count: 0
+  tracker-http:
+    project: tracker
+    type: service
+    internal_type: http-service
+    groups:
+      tracker-http:
+        count: 10
+        maintenance_count: 10
+        services:
+        - tracker
+  tracker-worker:
+    project: tracker
+    type: service
+    internal_type: background-worker
+    groups:
+      tracker-worker:
+        count: 12
+        maintenance_count: 0
+  trebek-cron-unload-customer-attendance:
+    project: trebek
+    description: ETL last 24 hours of customer attendance records into ElasticSearch
+    cronitor_id: F7LCKa
+    type: batch
+    cron: 10 */4 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  trebek-cron-unload-user-purchase:
+    project: trebek
+    description: ETL last 24 hours of user purchases into ElasticSearch
+    cronitor_id: dkjpJg
+    type: batch
+    cron: 5 */4 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  trebek-http:
+    project: trebek
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 5
+        maintenance_count: 5
+        services:
+        - trebek
+  trebek-load-bulk:
+    project: trebek
+    type: batch
+    internal_type: parameterized
+    groups:
+      trebek-load-bulk:
+        count: 1
+        maintenance_count: 0
+  trebek-load-realtime:
+    project: trebek
+    type: service
+    internal_type: background-worker
+    groups:
+      trebek-load-realtime:
+        count: 3
+        maintenance_count: 0
+  trebek-rebuild-index:
+    project: trebek
+    type: batch
+    internal_type: parameterized
+    groups:
+      trebek-rebuild-index:
+        count: 1
+        maintenance_count: 0
+  tuna-http:
+    project: tuna
+    type: service
+    internal_type: http-service
+    groups:
+      server:
+        count: 1
+        maintenance_count: 1
+        services:
+        - tuna
+  turtle-http:
+    project: turtle
+    type: service
+    internal_type: http-service
+    groups:
+      turtle-http:
+        count: 1
+        maintenance_count: 1
+        services:
+        - turtle
+  user-subscription-tagging:
+    project: user-subscription-tagging
+    type: service
+    internal_type: http-service
+    groups:
+      user-subscription-tagging:
+        count: 5
+        maintenance_count: 5
+        services:
+        - user-subscription-tagging
+  user-subscription-tagging-cache-health-monitor:
+    project: user-subscription-tagging
+    type: service
+    internal_type: background-worker
+    groups:
+      user-subscription-tagging-cache-health-monitor:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-cron-backfill-missing-default:
+    project: user-subscription-tagging
+    description: Makes sure all users have the default tag.
+    cronitor_id: FSOGG3
+    type: batch
+    cron: 0 0 20 12 *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-cron-backfill-warehouse-queries:
+    project: user-subscription-tagging
+    description: Script to backfill newly created tags using data warehouse queries.
+    cronitor_id: FMxGGX
+    type: batch
+    cron: 0 0 20 12 *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-cron-create-tags:
+    project: user-subscription-tagging
+    description: Creates db objects for new tags
+    cronitor_id: 0kQGOz
+    type: batch
+    cron: 0 0 1 * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-cron-ensure-users-processed:
+    project: user-subscription-tagging
+    description: Ensures that all new users tag info is processed
+    cronitor_id: 201pdd
+    type: batch
+    cron: 0 */3 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-cron-process-canadian-users:
+    project: user-subscription-tagging
+    description: Processes inactivate canadian users tag.
+    cronitor_id: Vjtpak
+    type: batch
+    cron: 0 0 * * *
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-cron-remove-stale-user-tags:
+    project: user-subscription-tagging
+    description: Checks if various tags should be removed from users.
+    cronitor_id: g0spDo
+    type: batch
+    cron: 0 0 * * 0
+    internal_type: periodic
+    groups:
+      cron:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-update-cache:
+    project: user-subscription-tagging
+    type: batch
+    internal_type: parameterized
+    groups:
+      user-subscription-tagging-update-cache:
+        count: 1
+        maintenance_count: 0
+  user-subscription-tagging-update-iterable:
+    project: user-subscription-tagging
+    type: batch
+    internal_type: parameterized
+    groups:
+      user-subscription-tagging-update-iterable:
+        count: 1
+        maintenance_count: 0
+  yellowfin:
+    project: yellowfin
+    type: service
+    internal_type: http-service
+    groups:
+      yellowfin:
+        count: 1
+        maintenance_count: 1
+        services:
+        - yellowfin
